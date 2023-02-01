@@ -4,10 +4,13 @@ from schemas.user import user
 
 
 post_url = 'https://reqres.in/api/users'
-get_url = 'https://reqres.in/api/users/'
 body = {
           "name": "morpheus",
           "job": "leader"
+       }
+data_for_registration = {
+          "email": "eve.holt@reqres.in",
+          "password": "pistol"
        }
 
 
@@ -29,10 +32,8 @@ def test_response_should_have_param_from_request():
     assert response.json().get('name') == body["name"]
 
 
-def test_user_was_created():
-    create_user = requests.post(url=post_url, json=body)
-    user_id = create_user.json().get('id')
+def test_login_user_who_was_registrated():
+    registration = requests.post(url='https://reqres.in/api/register', json=data_for_registration)
+    login = requests.get(url='https://reqres.in/api/login', json=data_for_registration)
 
-    response_get = requests.get(url=get_url + user_id)
-
-    assert response_get.status_code == 200
+    assert login.status_code == 200
