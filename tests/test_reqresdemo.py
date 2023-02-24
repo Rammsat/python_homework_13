@@ -13,28 +13,26 @@ data_for_registration = {
           "password": "pistol"
        }
 
-reqres = BaseSession('https://reqres.in/api')
 
-
-def test_status_code():
+def test_status_code(reqres):
     response = reqres.post(url='/users', json=body)
 
     assert response.status_code == 201
 
 
-def test_schema():
+def test_schema(reqres):
     response = reqres.post(url='/users', json=body)
 
     assert S(user) == response.json()
 
 
-def test_response_should_have_param_from_request():
+def test_response_should_have_param_from_request(reqres):
     response = reqres.post(url='/users', json=body)
 
     assert response.json().get('name') == body["name"]
 
 
-def test_login_user_who_was_registrated():
+def test_login_user_who_was_registrated(reqres):
     registration = reqres.post(url='/register', json=data_for_registration)
     login = reqres.get(url='/login', json=data_for_registration)
 

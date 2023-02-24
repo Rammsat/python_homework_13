@@ -4,3 +4,5 @@ voluptuous
 pytest-voluptuous
 selene==2.0.0b16
 python-dotenv
+allure-pytest
+curlify

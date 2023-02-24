@@ -24,3 +24,9 @@ def demoshop():
     browser.driver.add_cookie({"name": "NOPCOMMERCE.AUTH", "value": authorization_cookie})
 
     return browser
+
+
+@pytest.fixture(scope="session")
+def reqres():
+    api_url = "https://reqres.in/api"
+    return BaseSession(api_url)

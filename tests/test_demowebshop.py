@@ -1,13 +1,5 @@
-import os
-from time import sleep
-import requests
 from selene import have, be
 from selene.support.shared import browser
-from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from utils.base_session import BaseSession
 
 
 def test_login(demoshop):
